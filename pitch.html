@@ -813,17 +813,6 @@
 
 
   <!-- ACCOUNT DETAILS & PAYMENT METHODS WITH 1-CLICK COPY -->
-  <section id="support" class="py-20 max-w-4xl mx-auto px-5 sm:px-8">
-    <div class="text-center mb-10">
-      <div class="w-12 h-12 rounded-2xl bg-apple-surface border border-apple-border flex items-center justify-center mx-auto mb-3 text-apple-blue text-xl shadow-apple-sm">
-        <i class="fa-regular fa-credit-card"></i>
-      </div>
-      <span class="text-xs font-mono uppercase tracking-widest text-apple-blue block mb-1 font-semibold">Direct Channels</span>
-      <h2 class="text-3xl sm:text-4xl font-semibold tracking-tight text-apple-text">Account Details</h2>
-      <p class="text-apple-secondary text-sm mt-2 max-w-md mx-auto">
-        Contributions can be sent directly via M-Pesa or Postbank Paybill. Tap any number to copy instantly.
-      </p>
-    </div>
 
     <!-- Payment Cards Box -->
   
@@ -1125,18 +1114,40 @@
     const pledgeSuccessToast = document.getElementById('pledgeSuccessToast');
     const pledgeSubmitBtn = document.getElementById('pledgeSubmitBtn');
 
-    pledgeForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      pledgeSubmitBtn.disabled = true;
-      pledgeSubmitBtn.innerHTML = `<i class="fa-solid fa-spinner animate-spin mr-1"></i> Sending...`;
+   // Pledge Note Submission -> Direct WhatsApp Redirect
+const pledgeForm = document.getElementById('pledgeForm');
+const pledgeSubmitBtn = document.getElementById('pledgeSubmitBtn');
 
-      setTimeout(() => {
-        pledgeForm.reset();
-        pledgeSubmitBtn.disabled = false;
-        pledgeSubmitBtn.innerHTML = `Send Message to George`;
-        pledgeSuccessToast.classList.remove('hidden');
-      }, 600);
-    });
+pledgeForm.addEventListener('submit', (e) => {
+  e.preventDefault();
+
+  const name = document.getElementById('supporterName').value.trim();
+  const contact = document.getElementById('supporterContact').value.trim();
+  const note = document.getElementById('supporterNote').value.trim();
+
+  // Format message cleanly for WhatsApp
+  let text = `*New Frames by Miako Message*\n\n`;
+  text += `*From:* ${name}\n`;
+  if (contact) {
+    text += `*Contact:* ${contact}\n`;
+  }
+  text += `*Message:* ${note || 'No note provided.'}`;
+
+  // Encode message for URL
+  const encodedText = encodeURIComponent(text);
+  const whatsappUrl = `https://wa.me/254758889791?text=${encodedText}`;
+
+  // Provide immediate UI feedback then launch
+  pledgeSubmitBtn.disabled = true;
+  pledgeSubmitBtn.innerHTML = `<i class="fa-brands fa-whatsapp mr-1"></i> Opening WhatsApp...`;
+
+  setTimeout(() => {
+    window.open(whatsappUrl, '_blank');
+    pledgeSubmitBtn.disabled = false;
+    pledgeSubmitBtn.innerHTML = `Send Message to George`;
+    pledgeForm.reset();
+  }, 400);
+});
   </script>
 </body>
 </html>
