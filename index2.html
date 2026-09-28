@@ -1,1 +1,1142 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Frames by Miako</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 44 44'%3E%3Crect width='44' height='44' rx='10' fill='%230B0F19'/%3E%3Cpath d='M8 15V9h6' stroke='%230071E3' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3Cpath d='M36 15V9h-6' stroke='%230071E3' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3Cpath d='M8 29v6h6' stroke='%230071E3' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3Cpath d='M36 29v6h-6' stroke='%230071E3' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3Cpath d='M13 31V15l9 10 9-10v16' stroke='%23FFFFFF' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3Ccircle cx='22' cy='22' r='2.5' fill='%230071E3'/%3E%3C/svg%3E">
+  <!-- Font Awesome CDN for clean UI icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['-apple-system', 'BlinkMacSystemFont', '"SF Pro Display"', '"SF Pro Text"', '"SF Pro"', '"Helvetica Neue"', 'Helvetica', 'Arial', 'sans-serif'],
+            mono: ['"SF Mono"', 'ui-monospace', 'Menlo', 'Monaco', 'Consolas', 'monospace'],
+          },
+          colors: {
+            apple: {
+              bg: '#FFFFFF',
+              subtle: '#FBFBFD',
+              surface: '#F5F5F7',
+              border: 'rgba(0, 0, 0, 0.08)',
+              borderLight: 'rgba(0, 0, 0, 0.04)',
+              text: '#1D1D1F',
+              secondary: '#515154',
+              muted: '#86868B',
+              blue: '#0071E3',
+              blueHover: '#0077ED',
+              green: '#34C759',
+              amber: '#F59E0B'
+            }
+          },
+          boxShadow: {
+            'apple-sm': '0 2px 8px rgba(0, 0, 0, 0.04)',
+            'apple-card': '0 8px 24px rgba(0, 0, 0, 0.04), 0 1px 3px rgba(0, 0, 0, 0.03)',
+            'apple-float': '0 20px 48px -12px rgba(0, 0, 0, 0.08)',
+          }
+        }
+      }
+    }
+  </script>
 
+  <!-- SF Pro Typography & Styling -->
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "SF Pro", "Helvetica Neue", sans-serif;
+      letter-spacing: -0.016em;
+      background-color: #FFFFFF;
+      color: #1D1D1F;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    .glass-header {
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(24px) saturate(180%);
+      -webkit-backdrop-filter: blur(24px) saturate(180%);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    }
+
+    .apple-card {
+      background: #FFFFFF;
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      border-radius: 20px;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .apple-card:hover {
+      border-color: rgba(0, 0, 0, 0.16);
+      transform: translateY(-2px);
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.06);
+    }
+
+    .tier-card {
+      cursor: pointer;
+      transition: all 0.2s ease-in-out;
+    }
+    .tier-card.active {
+      border-color: #0071E3 !important;
+      background-color: rgba(0, 113, 227, 0.03);
+      box-shadow: 0 0 0 2px rgba(0, 113, 227, 0.2);
+    }
+
+    /* Portfolio Slot Item Zoom */
+    .photo-slot {
+      cursor: pointer;
+      position: relative;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      background: #F5F5F7;
+    }
+    .photo-slot img {
+      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .photo-slot:hover img {
+      transform: scale(1.06);
+    }
+  </style>
+</head>
+<body class="selection:bg-apple-blue selection:text-white">
+
+  <!-- TOP ANNOUNCEMENT BAR -->
+  <div class="bg-apple-surface border-b border-apple-border text-center py-2 px-4 text-xs font-medium text-apple-secondary">
+    <span>Official Venture Pitch · Launch Phase Equipment Fundraiser · </span>
+    <a href="#support" class="text-apple-blue hover:underline font-semibold ml-1">Support Frames by Miako &rarr;</a>
+  </div>
+
+  <!-- NAVIGATION WITH CUSTOM 'M' PHOTOGRAPHY LOGO -->
+  <header class="sticky top-0 z-40 glass-header">
+    <div class="max-w-6xl mx-auto px-5 sm:px-8 h-16 flex items-center justify-between">
+      
+      <!-- Brand Logo Mark -->
+      <a href="#" class="flex items-center gap-3 group">
+        <div class="w-9 h-9 rounded-xl bg-apple-text flex items-center justify-center text-white shadow-apple-sm group-hover:scale-105 transition-transform duration-200">
+          <svg class="w-5 h-5 text-white" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M7 13V8H12" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" opacity="0.6"/>
+            <path d="M33 13V8H28" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" opacity="0.6"/>
+            <path d="M7 27V32H12" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" opacity="0.6"/>
+            <path d="M33 27V32H28" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" opacity="0.6"/>
+            <path d="M12 28V12L20 22L28 12V28" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="20" cy="22" r="2" fill="#0071E3"/>
+          </svg>
+        </div>
+        <div class="flex flex-col">
+          <span class="text-sm font-semibold tracking-tight text-apple-text flex items-center gap-1.5">
+            FRAMES BY MIAKO
+          </span>
+          <span class="text-[10px] font-mono text-apple-muted uppercase tracking-wider">Commercial Photography &amp; Film</span>
+        </div>
+      </a>
+
+      <!-- Desktop Navigation Links -->
+      <nav class="hidden md:flex items-center gap-7 text-[13px] font-medium text-apple-secondary">
+        <a href="#about" class="hover:text-apple-text transition-colors">About George</a>
+        <a href="#vision" class="hover:text-apple-text transition-colors">Vision &amp; Sectors</a>
+        <a href="#portfolio" class="hover:text-apple-text transition-colors">Portfolio</a>
+        <a href="#equipment" class="hover:text-apple-text transition-colors">Equipment Target</a>
+        <a href="#tiers" class="hover:text-apple-text transition-colors">Sponsorship Tiers</a>
+      </nav>
+
+      <!-- Action Button -->
+      <div class="hidden sm:flex items-center gap-3">
+        <a href="#support" class="px-4 py-2 rounded-full bg-apple-blue text-white hover:bg-apple-blueHover text-xs font-semibold tracking-tight shadow-apple-sm transition-all active:scale-95 flex items-center gap-2">
+          <span>Contribute Now</span>
+          <i class="fa-solid fa-arrow-down text-[10px]"></i>
+        </a>
+      </div>
+
+      <!-- Mobile Menu Trigger -->
+      <button id="mobileMenuBtn" class="md:hidden p-2 text-apple-text" aria-label="Toggle navigation">
+        <i class="fa-solid fa-bars text-lg"></i>
+      </button>
+
+    </div>
+
+    <!-- Mobile Dropdown Menu -->
+    <div id="mobileMenu" class="hidden md:hidden bg-white/95 border-b border-apple-border px-6 py-4 space-y-3">
+      <a href="#about" class="block text-sm font-medium text-apple-text">About George</a>
+      <a href="#vision" class="block text-sm font-medium text-apple-text">Vision &amp; Sectors</a>
+      <a href="#portfolio" class="block text-sm font-medium text-apple-text">Portfolio (9 Slots)</a>
+      <a href="#equipment" class="block text-sm font-medium text-apple-text">Equipment Target</a>
+      <a href="#tiers" class="block text-sm font-medium text-apple-text">Contribution Tiers</a>
+      <a href="#support" class="block text-sm font-semibold text-apple-blue">Account &amp; Payment Details</a>
+    </div>
+  </header>
+
+
+  <!-- HERO & CALL FOR SPONSORSHIP INTRODUCTION -->
+  <section id="about" class="pt-14 pb-16 px-5 sm:px-8 max-w-6xl mx-auto">
+    
+
+    <!-- Main Title -->
+    <h1 class="text-4xl sm:text-6xl font-semibold tracking-tight text-apple-text leading-[1.1] mb-3">
+      FRAMES BY MIAKO
+    </h1>
+    <p class="text-xl sm:text-2xl text-apple-muted font-normal max-w-3xl mb-8">
+      Call for sponsorship for a Commercial Photography &amp; Videography Venture.
+    </p>
+
+
+
+    <!-- INTRODUCTION CARD WITH DEDICATED PORTRAIT SLOT -->
+    <div class="apple-card overflow-hidden shadow-apple-card border border-apple-border">
+      <div class="grid grid-cols-1 lg:grid-cols-12">
+        
+        <!-- FOUNDER PORTRAIT SLOT -->
+        <div class="lg:col-span-5 bg-apple-subtle border-b lg:border-b-0 lg:border-r border-apple-border p-6 sm:p-8 flex flex-col items-center justify-center">
+          
+          <div class="w-full max-w-sm">
+            <div class="relative w-full aspect-[4/5] rounded-2xl overflow-hidden bg-white border border-apple-border shadow-apple-sm group">
+              
+              <img 
+                id="founderPortraitImg" 
+                src="miako.jpg" 
+                alt="George Miako Portrait" 
+                class="w-full h-full object-cover object-center group-hover:scale-102 transition-transform duration-500"
+                onerror="this.src='https://placehold.co/900x1125/F5F5F7/1D1D1F?text=George+Miako+Portrait'"
+              />
+
+              <!-- Overlay Vignette & Viewfinder Frame Marks -->
+              <div class="absolute inset-0 pointer-events-none p-4 flex flex-col justify-between">
+                <div class="flex justify-between items-start">
+                  <span class="w-4 h-4 border-t-2 border-l-2 border-white/70"></span>
+                  <span class="w-4 h-4 border-t-2 border-r-2 border-white/70"></span>
+                </div>
+                <div class="flex justify-between items-end">
+                  <span class="w-4 h-4 border-b-2 border-l-2 border-white/70"></span>
+                  <span class="w-4 h-4 border-b-2 border-r-2 border-white/70"></span>
+                </div>
+              </div>
+
+              <!-- Badge Tag -->
+              <div class="absolute top-3 left-3 bg-white/90 backdrop-blur-md px-2.5 py-1 rounded-full text-[10px] font-mono text-apple-text border border-apple-borderLight">
+                FOUNDER PORTRAIT
+              </div>
+            </div>
+
+            <!-- Founder Portrait Caption & Badges -->
+            <div class="mt-4 text-center">
+              <h3 class="text-base font-semibold text-apple-text">George Miako</h3>
+              <p class="text-xs text-apple-secondary font-mono mt-0.5">Founder &amp; Creative Lead · Frames by Miako</p>
+              <div class="mt-2 flex items-center justify-center gap-2">
+                <span class="text-[10px] font-mono text-apple-muted bg-apple-surface px-2.5 py-0.5 rounded-full border border-apple-border">
+                  Starehe #15579
+                </span>
+                <span class="text-[10px] font-mono text-apple-muted bg-apple-surface px-2.5 py-0.5 rounded-full border border-apple-border">
+                  JKUAT Mechatronics
+                </span>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+        <!-- FOUNDER INTRODUCTORY NARRATIVE -->
+        <div class="lg:col-span-7 p-6 sm:p-10 flex flex-col justify-center">
+          
+          <div class="flex items-center gap-2 mb-4">
+            <span class="w-2.5 h-2.5 rounded-full bg-apple-blue"></span>
+            <span class="text-xs font-mono uppercase tracking-widest text-apple-secondary font-semibold">Founder Note</span>
+          </div>
+
+          <div class="space-y-4 text-apple-secondary text-base sm:text-lg leading-relaxed">
+            <p>
+              <strong class="text-apple-text font-semibold">Hello! I'm George Miako</strong>, a young Starehe alumnus (File No. 15579, Pele House, Class of 2023) and a third-year Mechatronic Engineering student at JKUAT.
+            </p>
+            <p>
+              Beyond engineering, I’ve developed a strong interest in photography, filmmaking, and visual storytelling. Over the years, I’ve spent a lot of time experimenting with composition, lighting, editing, and cinematic aesthetics through personal projects and recreational photography.
+            </p>
+            <div class="p-4 sm:p-5 rounded-xl bg-apple-surface border border-apple-border">
+              <p class="text-apple-text font-medium text-base sm:text-lg">
+                Frames By Miako is my attempt to turn that interest into a serious creative venture while I still have the freedom, energy, and time for ambitious experiments.
+              </p>
+            </div>
+            <p class="text-xs sm:text-sm text-apple-muted font-mono pt-2">
+              Combining engineering discipline, precision lighting geometry, and visual aesthetics to craft high-impact commercial media.
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+
+  </section>
+
+
+  <!-- WHAT I WANT TO ACHIEVE (VISION & TARGET SECTORS) -->
+  <section id="vision" class="py-16 bg-apple-subtle border-y border-apple-border">
+    <div class="max-w-6xl mx-auto px-5 sm:px-8">
+      
+      <div class="max-w-3xl mb-12">
+        <span class="text-xs font-mono uppercase tracking-widest text-apple-blue block mb-2 font-semibold">The Horizon</span>
+        <h2 class="text-3xl sm:text-4xl font-semibold tracking-tight text-apple-text">What I Want to Achieve</h2>
+        <p class="text-apple-secondary text-base sm:text-lg mt-4 leading-relaxed">
+          Frames By Miako is an early-stage photography and film venture currently in its launch phase. The goal is to serve the <strong>hospitality</strong>, <strong>real estate</strong>, <strong>automotive</strong>, and <strong>corporate sectors</strong> through photography and cinematic videography.
+        </p>
+        <p class="text-apple-muted text-sm sm:text-base mt-2 leading-relaxed">
+          This will be achieved by specializing in hotel features, architectural showcases, luxury home tours, automotive content, and promotional films designed to help businesses stand out in a highly competitive digital landscape.
+        </p>
+      </div>
+
+      <!-- Core Sectors Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        
+        <!-- Hospitality -->
+        <div class="apple-card p-6 flex flex-col justify-between">
+          <div>
+            <div class="w-10 h-10 rounded-xl bg-apple-surface border border-apple-border flex items-center justify-center text-apple-text mb-4">
+              <i class="fa-solid fa-hotel text-sm text-apple-blue"></i>
+            </div>
+            <h3 class="text-base font-semibold text-apple-text">Hospitality</h3>
+            <p class="text-xs text-apple-secondary mt-2 leading-relaxed">
+              Curated hotel features, resort visuals, restaurant interiors, and guest experience cinematic shorts.
+            </p>
+          </div>
+          <span class="text-[11px] font-mono text-apple-muted mt-5 pt-3 border-t border-apple-borderLight">Hotel &amp; Dining Features</span>
+        </div>
+
+        <!-- Real Estate -->
+        <div class="apple-card p-6 flex flex-col justify-between">
+          <div>
+            <div class="w-10 h-10 rounded-xl bg-apple-surface border border-apple-border flex items-center justify-center text-apple-text mb-4">
+              <i class="fa-solid fa-building text-sm text-apple-blue"></i>
+            </div>
+            <h3 class="text-base font-semibold text-apple-text">Real Estate</h3>
+            <p class="text-xs text-apple-secondary mt-2 leading-relaxed">
+              High-end architectural showcases, residential luxury home video tours, and structural twilight stills.
+            </p>
+          </div>
+          <span class="text-[11px] font-mono text-apple-muted mt-5 pt-3 border-t border-apple-borderLight">Architectural &amp; Home Tours</span>
+        </div>
+
+        <!-- Automotive -->
+        <div class="apple-card p-6 flex flex-col justify-between">
+          <div>
+            <div class="w-10 h-10 rounded-xl bg-apple-surface border border-apple-border flex items-center justify-center text-apple-text mb-4">
+              <i class="fa-solid fa-car text-sm text-apple-blue"></i>
+            </div>
+            <h3 class="text-base font-semibold text-apple-text">Automotive</h3>
+            <p class="text-xs text-apple-secondary mt-2 leading-relaxed">
+              Precision rolling tracking, commercial dealership showcases, automotive build profiles, and motion edits.
+            </p>
+          </div>
+          <span class="text-[11px] font-mono text-apple-muted mt-5 pt-3 border-t border-apple-borderLight">Motion &amp; Static Tracking</span>
+        </div>
+
+        <!-- Corporate -->
+        <div class="apple-card p-6 flex flex-col justify-between">
+          <div>
+            <div class="w-10 h-10 rounded-xl bg-apple-surface border border-apple-border flex items-center justify-center text-apple-text mb-4">
+              <i class="fa-solid fa-briefcase text-sm text-apple-blue"></i>
+            </div>
+            <h3 class="text-base font-semibold text-apple-text">Corporate</h3>
+            <p class="text-xs text-apple-secondary mt-2 leading-relaxed">
+              Promotional brand films, team documentary stories, and strategic digital content designed for competitive impact.
+            </p>
+          </div>
+          <span class="text-[11px] font-mono text-apple-muted mt-5 pt-3 border-t border-apple-borderLight">Commercial Brand Films</span>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- MY PORTFOLIO: 9-PHOTO (3x3) GRID WITH LIGHTBOX VIEWER -->
+  <section id="portfolio" class="py-16 max-w-6xl mx-auto px-5 sm:px-8">
+    <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8">
+      <div>
+        <span class="text-xs font-mono uppercase tracking-widest text-apple-blue block mb-1 font-semibold">Visual Archives</span>
+        <h2 class="text-3xl font-semibold tracking-tight text-apple-text">My Portfolio</h2>
+        <p class="text-apple-secondary text-sm mt-1">9 curated production frames across architectural, nature, and documentary compositions. Tap any slot to view in high resolution.</p>
+      </div>
+    </div>
+
+    <!-- 3x3 (9-SLOT) PHOTO GRID -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="portfolioGrid">
+      
+      <!-- SLOT 1: sbc.webp -->
+      <div class="photo-slot group" onclick="openLightbox(0)">
+        <div class="aspect-[4/3] bg-apple-surface overflow-hidden relative">
+          <img 
+            src="sbc.webp" 
+            alt="Starehe Heritage Frame"
+            class="w-full h-full object-cover"
+            onerror="this.src='https://placehold.co/1000x750/F5F5F7/1D1D1F?text=Slot+01:+sbc'"
+          />
+          <div class="absolute top-3 left-3 bg-white/90 backdrop-blur-md px-2.5 py-0.5 rounded-full text-[10px] font-mono text-apple-text shadow-sm">
+            01 · INSTITUTIONAL
+          </div>
+          <div class="absolute bottom-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity bg-black/75 text-white w-7 h-7 rounded-full flex items-center justify-center text-xs">
+            <i class="fa-solid fa-expand"></i>
+          </div>
+        </div>
+        <div class="p-4 bg-white border-t border-apple-borderLight">
+          <p class="text-xs text-apple-secondary mt-0.5 font-mono">Starehe</p>
+        </div>
+      </div>
+
+      <!-- SLOT 2: jku.jpg -->
+      <div class="photo-slot group" onclick="openLightbox(1)">
+        <div class="aspect-[4/3] bg-apple-surface overflow-hidden relative">
+          <img 
+            src="jku.jpg" 
+            alt="Campus Architectural Perspectives"
+            class="w-full h-full object-cover"
+            onerror="this.src='https://placehold.co/1000x750/F5F5F7/1D1D1F?text=Slot+02:+jku'"
+          />
+          <div class="absolute top-3 left-3 bg-white/90 backdrop-blur-md px-2.5 py-0.5 rounded-full text-[10px] font-mono text-apple-text shadow-sm">
+            02 · CAMPUS
+          </div>
+          <div class="absolute bottom-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity bg-black/75 text-white w-7 h-7 rounded-full flex items-center justify-center text-xs">
+            <i class="fa-solid fa-expand"></i>
+          </div>
+        </div>
+        <div class="p-4 bg-white border-t border-apple-borderLight">
+          <p class="text-xs text-apple-secondary mt-0.5 font-mono">A JKUAT street</p>
+        </div>
+      </div>
+
+      <!-- SLOT 3: turbine.webp -->
+      <div class="photo-slot group" onclick="openLightbox(2)">
+        <div class="aspect-[4/3] bg-apple-surface overflow-hidden relative">
+          <img 
+            src="turbine.webp" 
+            alt="Kinetic Energy Turbine"
+            class="w-full h-full object-cover"
+            onerror="this.src='https://placehold.co/1000x750/F5F5F7/1D1D1F?text=Slot+03:+turbine'"
+          />
+          <div class="absolute top-3 left-3 bg-white/90 backdrop-blur-md px-2.5 py-0.5 rounded-full text-[10px] font-mono text-apple-text shadow-sm">
+            03 · INDUSTRIAL
+          </div>
+          <div class="absolute bottom-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity bg-black/75 text-white w-7 h-7 rounded-full flex items-center justify-center text-xs">
+            <i class="fa-solid fa-expand"></i>
+          </div>
+        </div>
+        <div class="p-4 bg-white border-t border-apple-borderLight">
+          <p class="text-xs text-apple-secondary mt-0.5 font-mono">Ngong Hills</p>
+        </div>
+      </div>
+
+      <!-- SLOT 4: town.webp -->
+      <div class="photo-slot group" onclick="openLightbox(3)">
+        <div class="aspect-[4/3] bg-apple-surface overflow-hidden relative">
+          <img 
+            src="town.webp" 
+            alt="Urban Streetscape & Geometry"
+            class="w-full h-full object-cover"
+            onerror="this.src='https://placehold.co/1000x750/F5F5F7/1D1D1F?text=Slot+04:+town'"
+          />
+          <div class="absolute top-3 left-3 bg-white/90 backdrop-blur-md px-2.5 py-0.5 rounded-full text-[10px] font-mono text-apple-text shadow-sm">
+            04 · URBAN
+          </div>
+          <div class="absolute bottom-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity bg-black/75 text-white w-7 h-7 rounded-full flex items-center justify-center text-xs">
+            <i class="fa-solid fa-expand"></i>
+          </div>
+        </div>
+        <div class="p-4 bg-white border-t border-apple-borderLight">
+          <p class="text-xs text-apple-secondary mt-0.5 font-mono">Nairobi City</p>
+        </div>
+      </div>
+
+      <!-- SLOT 5: sunset.webp -->
+      <div class="photo-slot group" onclick="openLightbox(4)">
+        <div class="aspect-[4/3] bg-apple-surface overflow-hidden relative">
+          <img 
+            src="sunset.webp" 
+            alt="Golden Hour Horizon"
+            class="w-full h-full object-cover"
+            onerror="this.src='https://placehold.co/1000x750/F5F5F7/1D1D1F?text=Slot+05:+sunset'"
+          />
+          <div class="absolute top-3 left-3 bg-white/90 backdrop-blur-md px-2.5 py-0.5 rounded-full text-[10px] font-mono text-apple-text shadow-sm">
+            05 · SUNSET
+          </div>
+          <div class="absolute bottom-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity bg-black/75 text-white w-7 h-7 rounded-full flex items-center justify-center text-xs">
+            <i class="fa-solid fa-expand"></i>
+          </div>
+        </div>
+        <div class="p-4 bg-white border-t border-apple-borderLight">
+          <p class="text-xs text-apple-secondary mt-0.5 font-mono">Golden Hour</p>
+        </div>
+      </div>
+
+      <!-- SLOT 6: kato.webp -->
+      <div class="photo-slot group" onclick="openLightbox(5)">
+        <div class="aspect-[4/3] bg-apple-surface overflow-hidden relative">
+          <img 
+            src="kato.webp" 
+            alt="Character & Narrative Portrait"
+            class="w-full h-full object-cover"
+            onerror="this.src='https://placehold.co/1000x750/F5F5F7/1D1D1F?text=Slot+06:+kato'"
+          />
+          <div class="absolute top-3 left-3 bg-white/90 backdrop-blur-md px-2.5 py-0.5 rounded-full text-[10px] font-mono text-apple-text shadow-sm">
+            06 · LANDSCAPE
+          </div>
+          <div class="absolute bottom-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity bg-black/75 text-white w-7 h-7 rounded-full flex items-center justify-center text-xs">
+            <i class="fa-solid fa-expand"></i>
+          </div>
+        </div>
+        <div class="p-4 bg-white border-t border-apple-borderLight">
+          <p class="text-xs text-apple-secondary mt-0.5 font-mono">Machakos sundown</p>
+        </div>
+      </div>
+
+      <!-- SLOT 7: flower.webp -->
+      <div class="photo-slot group" onclick="openLightbox(6)">
+        <div class="aspect-[4/3] bg-apple-surface overflow-hidden relative">
+          <img 
+            src="flower.webp" 
+            alt="Botanical Macro Focus"
+            class="w-full h-full object-cover"
+            onerror="this.src='https://placehold.co/1000x750/F5F5F7/1D1D1F?text=Slot+07:+flower'"
+          />
+          <div class="absolute top-3 left-3 bg-white/90 backdrop-blur-md px-2.5 py-0.5 rounded-full text-[10px] font-mono text-apple-text shadow-sm">
+            07 · MACRO
+          </div>
+          <div class="absolute bottom-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity bg-black/75 text-white w-7 h-7 rounded-full flex items-center justify-center text-xs">
+            <i class="fa-solid fa-expand"></i>
+          </div>
+        </div>
+        <div class="p-4 bg-white border-t border-apple-borderLight">
+          <p class="text-xs text-apple-secondary mt-0.5 font-mono">Colour &amp; detail</p>
+        </div>
+      </div>
+
+      <!-- SLOT 8: flowerset.webp -->
+      <div class="photo-slot group" onclick="openLightbox(7)">
+        <div class="aspect-[4/3] bg-apple-surface overflow-hidden relative">
+          <img 
+            src="flowerset.webp" 
+            alt="Chromatic Floral Cluster"
+            class="w-full h-full object-cover"
+            onerror="this.src='https://placehold.co/1000x750/F5F5F7/1D1D1F?text=Slot+08:+flowerset'"
+          />
+          <div class="absolute top-3 left-3 bg-white/90 backdrop-blur-md px-2.5 py-0.5 rounded-full text-[10px] font-mono text-apple-text shadow-sm">
+            08 · CONTRAST
+          </div>
+          <div class="absolute bottom-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity bg-black/75 text-white w-7 h-7 rounded-full flex items-center justify-center text-xs">
+            <i class="fa-solid fa-expand"></i>
+          </div>
+        </div>
+        <div class="p-4 bg-white border-t border-apple-borderLight">
+          <p class="text-xs text-apple-secondary mt-0.5 font-mono">Organic Composition &amp; Depth</p>
+        </div>
+      </div>
+
+      <!-- SLOT 9: lily.webp -->
+      <div class="photo-slot group" onclick="openLightbox(8)">
+        <div class="aspect-[4/3] bg-apple-surface overflow-hidden relative">
+          <img 
+            src="lily.webp" 
+            alt="Lily Petal Study"
+            class="w-full h-full object-cover"
+            onerror="this.src='https://placehold.co/1000x750/F5F5F7/1D1D1F?text=Slot+09:+lily'"
+          />
+          <div class="absolute top-3 left-3 bg-white/90 backdrop-blur-md px-2.5 py-0.5 rounded-full text-[10px] font-mono text-apple-text shadow-sm">
+            09 · BOTANICAL ART
+          </div>
+          <div class="absolute bottom-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity bg-black/75 text-white w-7 h-7 rounded-full flex items-center justify-center text-xs">
+            <i class="fa-solid fa-expand"></i>
+          </div>
+        </div>
+        <div class="p-4 bg-white border-t border-apple-borderLight">
+          <p class="text-xs text-apple-secondary mt-0.5 font-mono">Natural Geometry</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- PRODUCTION EQUIPMENT REQUIREMENTS (KES 390,000 GOAL) -->
+  <section id="equipment" class="py-16 bg-apple-subtle border-y border-apple-border">
+    <div class="max-w-6xl mx-auto px-5 sm:px-8">
+      
+      <div class="max-w-3xl mb-10">
+        <span class="text-xs font-mono uppercase tracking-widest text-apple-blue block mb-1 font-semibold">Equipment Fundraiser Target</span>
+        <h2 class="text-3xl sm:text-4xl font-semibold tracking-tight text-apple-text">Production Equipment Requirements</h2>
+        <p class="text-apple-secondary text-base mt-3 leading-relaxed">
+          Approximately <strong>KES 430,000</strong> is required to acquire the core production equipment for the launch of Frames by Miako.
+        </p>
+      </div>
+
+      <!-- Overall Target Tracker Banner -->
+      <div class="bg-white border border-apple-border rounded-2xl p-6 mb-8 shadow-apple-sm flex flex-col md:flex-row items-center justify-between gap-6">
+
+
+        <div class="w-full md:w-1/2">
+          <div class="flex justify-between text-xs font-mono mb-2">
+            <span class="text-apple-secondary">Launch Fund Status</span>
+            <span class="text-apple-blue font-semibold">Building Momentum</span>
+          </div>
+          <!-- Progress bar -->
+          <div class="w-full h-3 bg-apple-surface rounded-full overflow-hidden border border-apple-borderLight">
+            <div class="h-full bg-apple-blue rounded-full transition-all duration-1000" style="width: 25%"></div>
+          </div>
+          <div class="flex justify-between text-[11px] font-mono text-apple-muted mt-1.5">
+            <span>Direct Community Contributions</span>
+            <span>Target: KES 430,000</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Itemized Equipment Table -->
+      <div class="bg-white rounded-2xl border border-apple-border overflow-hidden shadow-apple-card">
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-sm">
+            <thead class="bg-apple-surface border-b border-apple-border text-xs font-mono uppercase text-apple-muted">
+              <tr>
+                <th class="py-4 px-6">Equipment Category</th>
+                <th class="py-4 px-6">Specifications &amp; Setup</th>
+                <th class="py-4 px-6 text-right">Estimated Cost (KES)</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-apple-borderLight">
+              
+              <!-- Row 1: Camera System -->
+              <tr class="hover:bg-apple-subtle transition-colors">
+                <td class="py-4 px-6">
+                  <div class="font-semibold text-apple-text">Camera System</div>
+                  <div class="text-xs text-apple-muted mt-0.5">Primary image capture system for professional photography &amp; video</div>
+                </td>
+                <td class="py-4 px-6 font-mono text-xs text-apple-secondary">
+                  Sony A6700 + 18-135mm lens
+                </td>
+                <td class="py-4 px-6 text-right font-mono font-semibold text-apple-text">
+                  210,000
+                </td>
+              </tr>
+
+              <!-- Row 2: Editing Workstation -->
+              <tr class="hover:bg-apple-subtle transition-colors">
+                <td class="py-4 px-6">
+                  <div class="font-semibold text-apple-text">Editing Workstation</div>
+                  <div class="text-xs text-apple-muted mt-0.5">High-performance photo editing, 4K rendering &amp; colour grading</div>
+                </td>
+                <td class="py-4 px-6 font-mono text-xs text-apple-secondary">
+                  Apple MacBook Pro
+                </td>
+                <td class="py-4 px-6 text-right font-mono font-semibold text-apple-text">
+                  160,000
+                </td>
+              </tr>
+
+              <!-- Row 3: Lighting & Support Equipment -->
+              <tr class="hover:bg-apple-subtle transition-colors">
+                <td class="py-4 px-6">
+                  <div class="font-semibold text-apple-text">Lighting &amp; Support Equipment</div>
+                  <div class="text-xs text-apple-muted mt-0.5">Continuous lighting kit &amp; tripod for stability &amp; control</div>
+                </td>
+                <td class="py-4 px-6 font-mono text-xs text-apple-secondary">
+                  Continuous lighting kit &amp; Tripod
+                </td>
+                <td class="py-4 px-6 text-right font-mono font-semibold text-apple-text">
+                  35,000
+                </td>
+              </tr>
+
+              <!-- Row 4: Storage & Accessories -->
+              <tr class="hover:bg-apple-subtle transition-colors">
+                <td class="py-4 px-6">
+                  <div class="font-semibold text-apple-text">Storage &amp; Accessories</div>
+                  <div class="text-xs text-apple-muted mt-0.5">High-speed SD cards, batteries, power &amp; protective cases</div>
+                </td>
+                <td class="py-4 px-6 font-mono text-xs text-apple-secondary">
+                  High-speed SD cards and Batteries
+                </td>
+                <td class="py-4 px-6 text-right font-mono font-semibold text-apple-text">
+                  25,000
+                </td>
+              </tr>
+
+              <!-- Total Row -->
+              <tr class="bg-apple-surface/60 font-semibold">
+                <td colspan="2" class="py-4 px-6 text-apple-text font-mono text-sm uppercase">
+                  Estimated Total Required
+                </td>
+                <td class="py-4 px-6 text-right font-mono text-lg text-apple-blue">
+                  KES 430,000
+                </td>
+              </tr>
+
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Equipment Component Cards -->
+      <div class="mt-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 text-xs text-apple-secondary">
+        <div class="p-4 rounded-xl bg-white border border-apple-border">
+          <div class="font-semibold text-apple-text mb-1"><i class="fa-solid fa-camera text-apple-blue mr-1.5"></i> Camera System</div>
+          The primary image capture system for professional photography and high-quality video production.
+        </div>
+        <div class="p-4 rounded-xl bg-white border border-apple-border">
+          <div class="font-semibold text-apple-text mb-1"><i class="fa-solid fa-laptop text-apple-blue mr-1.5"></i> Workstation</div>
+          A high-performance laptop capable of handling photo editing, video editing, colour grading, rendering, and media management.
+        </div>
+        <div class="p-4 rounded-xl bg-white border border-apple-border">
+          <div class="font-semibold text-apple-text mb-1"><i class="fa-solid fa-lightbulb text-apple-blue mr-1.5"></i> Lighting Equipment</div>
+          Continuous lighting and supporting accessories to ensure consistent image quality and creative control in both indoor and outdoor environments.
+        </div>
+        <div class="p-4 rounded-xl bg-white border border-apple-border">
+          <div class="font-semibold text-apple-text mb-1"><i class="fa-solid fa-arrows-to-dot text-apple-blue mr-1.5"></i> Support &amp; Rig</div>
+          A light kit and a tripod to provide stability and consistent lighting during production.
+        </div>
+        <div class="p-4 rounded-xl bg-white border border-apple-border">
+          <div class="font-semibold text-apple-text mb-1"><i class="fa-solid fa-hard-drive text-apple-blue mr-1.5"></i> High-Speed Storage</div>
+          High-speed solid-state drives (SSDs) and memory cards for secure storage, efficient workflows, and project backup.
+        </div>
+        <div class="p-4 rounded-xl bg-white border border-apple-border">
+          <div class="font-semibold text-apple-text mb-1"><i class="fa-solid fa-shield-halved text-apple-blue mr-1.5"></i> Power &amp; Transport</div>
+          Carrying cases, additional batteries, chargers, and filters for safe transport and uninterrupted shoot days.
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- SUPPORTING FRAMES BY MIAKO NARRATIVE -->
+  <section class="py-16 max-w-4xl mx-auto px-5 sm:px-8">
+    <div class="text-center mb-10">
+      <span class="text-xs font-mono uppercase tracking-widest text-apple-blue block mb-2 font-semibold">The Community Pillar</span>
+      <h2 class="text-3xl sm:text-4xl font-semibold tracking-tight text-apple-text">Supporting Frames by Miako</h2>
+    </div>
+
+    <div class="bg-white rounded-2xl border border-apple-border p-6 sm:p-10 shadow-apple-card space-y-5 text-apple-secondary text-base leading-relaxed">
+      <p>
+        Frames by Miako is currently in its launch phase and is being built through personal investment, continuous learning, and the support of people who believe in encouraging ambitious young people to pursue meaningful ventures.
+      </p>
+      <p>
+        If this vision resonates with you, I invite you to be part of its early story by contributing toward the purchase of the production equipment that will form the foundation of the studio.
+      </p>
+      <div class="p-4 rounded-xl bg-apple-surface border-l-4 border-apple-blue text-apple-text font-medium">
+        Every contribution, no matter the size, goes directly toward tangible production assets that expand the venture’s capabilities and accelerate its transition from personal projects to professional work.
+      </div>
+      <p>
+        While financial contributions are invaluable, support also extends beyond funding. <strong>Advice, mentorship, introductions, referrals and opportunities to collaborate</strong> are equally appreciated and can be just as impactful in helping a young venture grow.
+      </p>
+      <p class="text-apple-text font-medium">
+        I am deeply grateful to everyone who chooses to invest their confidence, encouragement or resources in this journey.
+      </p>
+    </div>
+  </section>
+
+
+  <!-- CONTRIBUTION CATEGORIES / INTERACTIVE TIERS -->
+  <section id="tiers" class="py-16 bg-apple-subtle border-y border-apple-border">
+    <div class="max-w-6xl mx-auto px-5 sm:px-8">
+      
+      <div class="text-center max-w-2xl mx-auto mb-12">
+        <span class="text-xs font-mono uppercase tracking-widest text-apple-blue block mb-1 font-semibold">Ways to Participate</span>
+        <h2 class="text-3xl sm:text-4xl font-semibold tracking-tight text-apple-text">Contribution Categories</h2>
+        <p class="text-apple-secondary text-sm mt-2">
+          To make participation straightforward, contributions can be directed toward different stages of the studio’s development.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        
+        <!-- Category 1: Foundation -->
+        <div class="tier-card apple-card p-6 flex flex-col justify-between" onclick="selectTier(this, 'Foundation', 'Any amount < KES 2,000')">
+          <div>
+            <span class="text-[10px] font-mono uppercase tracking-wider text-apple-muted block mb-2">TIER 01</span>
+            <h3 class="text-lg font-semibold text-apple-text">Foundation</h3>
+            <div class="text-xl font-bold text-apple-blue mt-2 mb-3">Any amount &lt; KES 2,000</div>
+            <p class="text-xs text-apple-secondary leading-relaxed">
+              <strong>Purpose:</strong> General equipment fund. Lays the seed for everyday operational readiness.
+            </p>
+          </div>
+          <button class="mt-6 w-full py-2 rounded-full border border-apple-border text-xs font-semibold text-apple-text hover:bg-apple-surface transition-colors">
+            Choose Foundation
+          </button>
+        </div>
+
+        <!-- Category 2: Accessories -->
+        <div class="tier-card apple-card p-6 flex flex-col justify-between" onclick="selectTier(this, 'Accessories', 'KES 2,000+')">
+          <div>
+            <span class="text-[10px] font-mono uppercase tracking-wider text-apple-muted block mb-2">TIER 02</span>
+            <h3 class="text-lg font-semibold text-apple-text">Accessories</h3>
+            <div class="text-xl font-bold text-apple-blue mt-2 mb-3">KES 2,000+</div>
+            <p class="text-xs text-apple-secondary leading-relaxed">
+              <strong>Purpose:</strong> Batteries, storage, high-speed SD cards &amp; critical peripheral accessories.
+            </p>
+          </div>
+          <button class="mt-6 w-full py-2 rounded-full border border-apple-border text-xs font-semibold text-apple-text hover:bg-apple-surface transition-colors">
+            Choose Accessories
+          </button>
+        </div>
+
+        <!-- Category 3: Lighting and Support -->
+        <div class="tier-card apple-card p-6 flex flex-col justify-between" onclick="selectTier(this, 'Lighting and support', 'KES 5,000+')">
+          <div>
+            <span class="text-[10px] font-mono uppercase tracking-wider text-apple-muted block mb-2">TIER 03</span>
+            <h3 class="text-lg font-semibold text-apple-text">Lighting &amp; Support</h3>
+            <div class="text-xl font-bold text-apple-blue mt-2 mb-3">KES 5,000+</div>
+            <p class="text-xs text-apple-secondary leading-relaxed">
+              <strong>Purpose:</strong> Continuous light kits, diffusers, softboxes and stabilization tripods.
+            </p>
+          </div>
+          <button class="mt-6 w-full py-2 rounded-full border border-apple-border text-xs font-semibold text-apple-text hover:bg-apple-surface transition-colors">
+            Choose Lighting
+          </button>
+        </div>
+
+        <!-- Category 4: Camera and Editing -->
+        <div class="tier-card apple-card p-6 flex flex-col justify-between" onclick="selectTier(this, 'Camera and editing', 'KES 15,000+')">
+          <div>
+            <span class="text-[10px] font-mono uppercase tracking-wider text-apple-muted block mb-2">TIER 04</span>
+            <h3 class="text-lg font-semibold text-apple-text">Camera &amp; Editing</h3>
+            <div class="text-xl font-bold text-apple-blue mt-2 mb-3">KES 15,000+</div>
+            <p class="text-xs text-apple-secondary leading-relaxed">
+              <strong>Purpose:</strong> Sony A7iii full-frame camera body, prime lenses, and MacBook Pro workstation.
+            </p>
+          </div>
+          <button class="mt-6 w-full py-2 rounded-full border border-apple-border text-xs font-semibold text-apple-text hover:bg-apple-surface transition-colors">
+            Choose Camera/Editing
+          </button>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ACCOUNT DETAILS & PAYMENT METHODS WITH 1-CLICK COPY -->
+  <section id="support" class="py-20 max-w-4xl mx-auto px-5 sm:px-8">
+    <div class="text-center mb-10">
+      <div class="w-12 h-12 rounded-2xl bg-apple-surface border border-apple-border flex items-center justify-center mx-auto mb-3 text-apple-blue text-xl shadow-apple-sm">
+        <i class="fa-regular fa-credit-card"></i>
+      </div>
+      <span class="text-xs font-mono uppercase tracking-widest text-apple-blue block mb-1 font-semibold">Direct Channels</span>
+      <h2 class="text-3xl sm:text-4xl font-semibold tracking-tight text-apple-text">Account Details</h2>
+      <p class="text-apple-secondary text-sm mt-2 max-w-md mx-auto">
+        Contributions can be sent directly via M-Pesa or Postbank Paybill. Tap any number to copy instantly.
+      </p>
+    </div>
+
+    <!-- Payment Cards Box -->
+  
+
+    <!-- Direct Contact & WhatsApp Links -->
+    <div class="mt-8 bg-apple-subtle border border-apple-border rounded-2xl p-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div>
+        <span class="text-xs font-mono text-apple-muted uppercase">Get in touch directly:</span>
+        <div class="text-base font-semibold text-apple-text mt-0.5">George Miako · Mobile: 0758 889 791</div>
+        <p class="text-xs text-apple-secondary">Open for conversations, advice, referrals, or collaboration.</p>
+      </div>
+
+      <div class="flex items-center gap-3">
+        <a href="tel:0758889791" class="px-4 py-2 rounded-full bg-apple-surface hover:bg-apple-border text-apple-text text-xs font-semibold border border-apple-border transition-all flex items-center gap-2">
+          <i class="fa-solid fa-phone text-xs"></i>
+          <span>Call</span>
+        </a>
+        <a href="https://wa.me/254758889791?text=Hello%20George,%20I%20came%20across%20the%20Frames%20by%20Miako%20sponsorship%20pitch..." target="_blank" class="px-4 py-2 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-semibold transition-all flex items-center gap-2 shadow-apple-sm">
+          <i class="fa-brands fa-whatsapp text-sm"></i>
+          <span>WhatsApp George</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Direct Message of Support Form -->
+    <div class="mt-8 bg-white border border-apple-border rounded-2xl p-6 sm:p-8 shadow-apple-sm">
+      <h3 class="text-base font-semibold text-apple-text mb-1">Send a Message of Support or Share Feedback</h3>
+      <p class="text-xs text-apple-secondary mb-4">Let George know if you’ve made a contribution, have equipment advice, or want to connect.</p>
+      
+      <form id="pledgeForm" class="space-y-4">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <input type="text" id="supporterName" required placeholder="Your Name" class="w-full px-4 py-2.5 rounded-xl bg-apple-surface border border-apple-border text-xs text-apple-text placeholder-apple-muted focus:outline-none focus:border-apple-blue">
+          <input type="text" id="supporterContact" placeholder="Your Email / Phone (Optional)" class="w-full px-4 py-2.5 rounded-xl bg-apple-surface border border-apple-border text-xs text-apple-text placeholder-apple-muted focus:outline-none focus:border-apple-blue">
+        </div>
+        <textarea id="supporterNote" rows="3" placeholder="Message, advice, referral, or contribution confirmation..." class="w-full px-4 py-2.5 rounded-xl bg-apple-surface border border-apple-border text-xs text-apple-text placeholder-apple-muted focus:outline-none focus:border-apple-blue resize-none"></textarea>
+        
+        <button type="submit" id="pledgeSubmitBtn" class="px-6 py-2.5 rounded-full bg-apple-text hover:bg-apple-blue text-white text-xs font-semibold tracking-tight transition-all">
+          Send Message to George
+        </button>
+      </form>
+
+      <div id="pledgeSuccessToast" class="hidden mt-4 p-4 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs">
+        <i class="fa-solid fa-check mr-1.5"></i> Thank you! Your message and encouragement have been recorded.
+      </div>
+    </div>
+
+  </section>
+
+
+  <!-- CLOSING SECTION & STAREHE MOTTO -->
+  <section class="py-16 bg-apple-subtle border-t border-apple-border text-center px-5 sm:px-8">
+    <div class="max-w-2xl mx-auto space-y-4">
+      <p class="text-base sm:text-lg text-apple-secondary leading-relaxed">
+        Thank you for taking the time to learn about Frames by Miako and for considering being part of its early journey.
+      </p>
+      
+      <div class="pt-4">
+        <span class="inline-block text-2xl sm:text-3xl font-bold tracking-tight text-apple-text font-serif italic">
+          “Lenga Juu!”
+        </span>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="bg-white border-t border-apple-border py-10 px-5 sm:px-8">
+    <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-6 text-xs text-apple-muted">
+      
+      <div class="flex items-center gap-3">
+        <div class="w-8 h-8 rounded-lg bg-apple-text flex items-center justify-center text-white">
+          <svg class="w-4 h-4 text-white" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M7 13V8H12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" opacity="0.6"/>
+            <path d="M33 13V8H28" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" opacity="0.6"/>
+            <path d="M7 27V32H12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" opacity="0.6"/>
+            <path d="M33 27V32H28" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" opacity="0.6"/>
+            <path d="M12 28V12L20 22L28 12V28" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="20" cy="22" r="1.8" fill="#0071E3"/>
+          </svg>
+        </div>
+        <div>
+          <div class="font-semibold text-apple-text">FRAMES BY MIAKO</div>
+          <div>Commercial Photography &amp; Videography Venture</div>
+        </div>
+      </div>
+
+      <div class="text-center sm:text-right font-mono text-[11px] text-apple-secondary">
+        <div>Founder: George Miako Njambi</div>
+        <div class="text-apple-muted">JKUAT Mechatronic Engineering</div>
+      </div>
+
+    </div>
+  </footer>
+
+
+  <!-- INTERACTIVE LIGHTBOX MODAL FOR PORTFOLIO SLOTS -->
+  <div id="lightboxModal" class="fixed inset-0 z-50 bg-black/90 backdrop-blur-xl hidden flex items-center justify-center p-4">
+    <!-- Close Button -->
+    <button onclick="closeLightbox()" class="absolute top-6 right-6 text-white/80 hover:text-white text-2xl z-50 p-2">
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+
+    <!-- Prev Button -->
+    <button onclick="prevLightbox(event)" class="absolute left-4 top-1/2 -translate-y-1/2 text-white/70 hover:text-white text-3xl p-3 z-50">
+      <i class="fa-solid fa-chevron-left"></i>
+    </button>
+
+    <!-- Next Button -->
+    <button onclick="nextLightbox(event)" class="absolute right-4 top-1/2 -translate-y-1/2 text-white/70 hover:text-white text-3xl p-3 z-50">
+      <i class="fa-solid fa-chevron-right"></i>
+    </button>
+
+    <!-- Lightbox Main Frame -->
+    <div class="max-w-4xl max-h-[85vh] w-full flex flex-col items-center" onclick="event.stopPropagation()">
+      <div class="relative w-full rounded-2xl overflow-hidden shadow-2xl bg-black flex items-center justify-center">
+        <img id="lightboxImg" src="" alt="Portfolio Large Frame" class="max-h-[70vh] w-auto max-w-full object-contain rounded-xl">
+      </div>
+      
+      <!-- Metadata Bar -->
+      <div class="mt-4 text-center text-white space-y-1">
+        <div id="lightboxCategory" class="text-[11px] font-mono tracking-widest uppercase text-apple-blue font-semibold">Category</div>
+        <h3 id="lightboxTitle" class="text-lg font-semibold tracking-tight text-white">Title</h3>
+        <p id="lightboxMeta" class="text-xs font-mono text-zinc-400">Metadata Specs</p>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- TOAST NOTIFICATION FOR 1-CLICK COPY -->
+  <div id="copyToast" class="fixed bottom-6 right-6 z-50 bg-apple-text text-white px-4 py-2.5 rounded-full text-xs font-mono shadow-apple-float opacity-0 pointer-events-none transition-all duration-300 flex items-center gap-2">
+    <i class="fa-solid fa-circle-check text-apple-green"></i>
+    <span id="copyToastText">Copied to clipboard!</span>
+  </div>
+
+
+  <!-- JAVASCRIPT LOGIC -->
+  <script>
+    // 9 Portfolio Items Data mapped to local repository files
+    const portfolioData = [
+      {
+        src: "sbc.webp",
+        category: "01 · INSTITUTIONAL",
+        title: "Starehe Heritage Frame",
+        meta: "Architectural & Institutional Archive"
+      },
+      {
+        src: "jku.jpg",
+        category: "02 · CAMPUS & SPACES",
+        title: "Campus Architectural Perspectives",
+        meta: "Structural Geometry & Daylight"
+      },
+      {
+        src: "turbine.webp",
+        category: "03 · INDUSTRIAL",
+        title: "Kinetic Energy Turbine",
+        meta: "Industrial Structure & Clean Sky"
+      },
+      {
+        src: "town.webp",
+        category: "04 · URBAN & CITY",
+        title: "Urban Streetscape & Geometry",
+        meta: "Ambient Town Atmosphere"
+      },
+      {
+        src: "sunset.webp",
+        category: "05 · NATURAL LIGHT",
+        title: "Golden Hour Horizon",
+        meta: "Atmospheric Light Study"
+      },
+      {
+        src: "kato.webp",
+        category: "06 · PORTRAITURE",
+        title: "Character & Narrative Portrait",
+        meta: "Natural Emotion & Contrast"
+      },
+      {
+        src: "flower.webp",
+        category: "07 · MACRO & DETAIL",
+        title: "Botanical Macro Focus",
+        meta: "Selective Focus & Petal Texture"
+      },
+      {
+        src: "flowerset.webp",
+        category: "08 · FLORAL HARMONY",
+        title: "Chromatic Floral Cluster",
+        meta: "Organic Composition & Depth"
+      },
+      {
+        src: "lily.webp",
+        category: "09 · BOTANICAL ART",
+        title: "Lily Petal Study",
+        meta: "Natural Geometry & Ambient Lighting"
+      }
+    ];
+
+    let currentLightboxIdx = 0;
+
+    function openLightbox(index) {
+      currentLightboxIdx = index;
+      const data = portfolioData[index];
+      document.getElementById('lightboxImg').src = data.src;
+      document.getElementById('lightboxCategory').textContent = data.category;
+      document.getElementById('lightboxTitle').textContent = data.title;
+      document.getElementById('lightboxMeta').textContent = data.meta;
+      
+      const modal = document.getElementById('lightboxModal');
+      modal.classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+      const modal = document.getElementById('lightboxModal');
+      modal.classList.add('hidden');
+      document.body.style.overflow = '';
+    }
+
+    function nextLightbox(e) {
+      if (e) e.stopPropagation();
+      currentLightboxIdx = (currentLightboxIdx + 1) % portfolioData.length;
+      openLightbox(currentLightboxIdx);
+    }
+
+    function prevLightbox(e) {
+      if (e) e.stopPropagation();
+      currentLightboxIdx = (currentLightboxIdx - 1 + portfolioData.length) % portfolioData.length;
+      openLightbox(currentLightboxIdx);
+    }
+
+    // Keyboard support for Lightbox
+    window.addEventListener('keydown', (e) => {
+      const modal = document.getElementById('lightboxModal');
+      if (!modal.classList.contains('hidden')) {
+        if (e.key === 'Escape') closeLightbox();
+        if (e.key === 'ArrowRight') nextLightbox();
+        if (e.key === 'ArrowLeft') prevLightbox();
+      }
+    });
+
+    // Close when clicking modal backdrop
+    document.getElementById('lightboxModal').addEventListener('click', (e) => {
+      if (e.target.id === 'lightboxModal') {
+        closeLightbox();
+      }
+    });
+
+    // 1-Click Copy Helper using navigator.clipboard with fallback
+    function copyToClipboard(text, label) {
+      if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(text);
+      } else {
+        const tempInput = document.createElement("input");
+        tempInput.value = text;
+        document.body.appendChild(tempInput);
+        tempInput.select();
+        document.execCommand("copy");
+        document.body.removeChild(tempInput);
+      }
+
+      const toast = document.getElementById("copyToast");
+      const toastText = document.getElementById("copyToastText");
+      toastText.textContent = `${label} copied!`;
+      toast.classList.remove("opacity-0", "pointer-events-none");
+      toast.classList.add("opacity-100");
+
+      setTimeout(() => {
+        toast.classList.remove("opacity-100");
+        toast.classList.add("opacity-0", "pointer-events-none");
+      }, 2500);
+    }
+
+    // Select Tier Interaction
+    function selectTier(cardElement, tierName, amount) {
+      document.querySelectorAll('.tier-card').forEach(c => c.classList.remove('active'));
+      cardElement.classList.add('active');
+      
+      const supportSection = document.getElementById('support');
+      supportSection.scrollIntoView({ behavior: 'smooth' });
+
+      const noteField = document.getElementById('supporterNote');
+      if (noteField && !noteField.value) {
+        noteField.value = `I would like to contribute towards the ${tierName} tier (${amount}).`;
+      }
+    }
+
+    // Mobile Navigation Toggle
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    mobileMenuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+
+    mobileMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden');
+      });
+    });
+
+    // Pledge Note Submission Simulation
+    const pledgeForm = document.getElementById('pledgeForm');
+    const pledgeSuccessToast = document.getElementById('pledgeSuccessToast');
+    const pledgeSubmitBtn = document.getElementById('pledgeSubmitBtn');
+
+    pledgeForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      pledgeSubmitBtn.disabled = true;
+      pledgeSubmitBtn.innerHTML = `<i class="fa-solid fa-spinner animate-spin mr-1"></i> Sending...`;
+
+      setTimeout(() => {
+        pledgeForm.reset();
+        pledgeSubmitBtn.disabled = false;
+        pledgeSubmitBtn.innerHTML = `Send Message to George`;
+        pledgeSuccessToast.classList.remove('hidden');
+      }, 600);
+    });
+  </script>
+</body>
+</html>
